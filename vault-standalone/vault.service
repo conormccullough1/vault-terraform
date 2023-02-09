@@ -1,0 +1,13 @@
+[Unit]
+Description=Vault Server on AWS
+Documentation=https://vault.io
+
+[Service]
+User=vault
+Group=vault
+ExecStart=/usr/local/bin/vault server -config=/opt/vault/vault-config.hcl -log-level=debug
+ExecReload=/bin/kill --signal HUP \$MAINPID
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
